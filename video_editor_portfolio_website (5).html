@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahmed | Video Editor</title>
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f0f0f;
+      color: #ffffff;
+      scroll-behavior: smooth;
+    }
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0a0a0a, #1c1c1c);
+    }
+    header h1 {
+      font-size: 56px;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 20px;
+      opacity: 0.85;
+    }
+    .cta {
+      margin-top: 30px;
+      display: inline-block;
+      padding: 16px 36px;
+      background: #00ffcc;
+      color: #000;
+      border-radius: 40px;
+      font-weight: bold;
+    }
+    section {
+      padding: 80px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      border-left: 4px solid #00ffcc;
+      padding-left: 14px;
+    }
+    .skills, .software, .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+    .card, .project {
+      background: #1a1a1a;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      transition: transform 0.4s ease;
+    }
+    .card:hover, .project:hover {
+      transform: translateY(-8px);
+    }
+    .showreel {
+      position: relative;
+      padding-top: 56.25%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+    .showreel iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: rgba(0,0,0,0.6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .play-btn:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: rgba(0,255,204,0.9);
+    }
+    .play-btn::before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 20px solid #fff;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      margin-left: 5px;
+    }
+    .showreel iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    footer {
+      text-align: center;
+      padding: 50px 20px;
+      background: #111;
+      opacity: 0.8;
+    }
+    a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<header data-aos="fade-down">
+  <h1>Ahmed</h1>
+  <p>Professional Video Editor | YouTube • Shorts • Reels</p>
+  <a class="cta" href="#contact">Hire Me</a>
+</header>
+
+<section data-aos="fade-up">
+  <h2>About Me</h2>
+  <p>I’m Ahmed, a passionate video editor focused on creating engaging, high-quality visual content. I turn raw footage into dynamic, polished videos optimized for YouTube and social media, with strong pacing and storytelling.</p>
+</section>
+
+<section data-aos="fade-up">
+  <h2>Some Of My Work</h2>
+  <div class="showreel" id="showreel">
+    <div class="play-btn" onclick="playVideo()"></div>
+    <iframe loading="lazy" id="showreelVideo" src="https://drive.google.com/file/d/18rzIxdcy8uoRCGIhG2bzoz1T4CTpKFAG/preview?mute=1" allow="autoplay" allowfullscreen></iframe>
+  </div>
+</section>
+
+<section data-aos="fade-up">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="card">Professional Video Editing</div>
+    <div class="card">Transitions & Visual Effects</div>
+    <div class="card">Color Correction & Grading</div>
+    <div class="card">Short-Form Content Editing</div>
+    <div class="card">Text Animations & Motion Graphics</div>
+  </div>
+</section>
+
+<section data-aos="fade-up">
+  <h2>Software</h2>
+  <div class="software">
+    <div class="card">Adobe Premiere Pro</div>
+    <div class="card">After Effects</div>
+    <div class="card">CapCut</div>
+    <div class="card">DaVinci Resolve</div>
+  </div>
+</section>
+
+<section data-aos="fade-up">
+  <h2>Portfolio</h2>
+  <div class="projects">
+    <div class="project">YouTube Video Editing</div>
+    <div class="project">Reels & Shorts</div>
+    <div class="project">Promo & Ads Videos</div>
+    <div class="project">Gaming Content</div>
+  </div>
+</section>
+
+<section id="contact" data-aos="fade-up">
+  <h2>Contact</h2>
+  <p>Email: ahmedherogamer0@gmail.com</p>
+  <p>Instagram: rexii_yt</p>
+</section>
+
+<footer>
+  <p>© 2025 Ahmed | Video Editor</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+
+  function playVideo() {
+    const iframe = document.getElementById('showreelVideo');
+    iframe.src = iframe.src + '&autoplay=1';
+    document.querySelector('.play-btn').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
