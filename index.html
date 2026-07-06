@@ -1,208 +1,326 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ahmed | Video Editor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xSplash | Professional Video Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+        
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .ar-font { font-family: 'Cairo', system-ui, sans-serif; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #09090b; } /* zinc-950 */
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 5px; } /* zinc-700 */
+        ::-webkit-scrollbar-thumb:hover { background: #52525b; } /* zinc-600 */
 
-  <!-- AOS Animation Library -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        /* Text Selection */
+        ::selection { background: #d4d4d8; color: #000; } /* zinc-300 */
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f0f0f;
-      color: #ffffff;
-      scroll-behavior: smooth;
-    }
-    header {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: linear-gradient(135deg, #0a0a0a, #1c1c1c);
-    }
-    header h1 {
-      font-size: 56px;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 20px;
-      opacity: 0.85;
-    }
-    .cta {
-      margin-top: 30px;
-      display: inline-block;
-      padding: 16px 36px;
-      background: #00ffcc;
-      color: #000;
-      border-radius: 40px;
-      font-weight: bold;
-    }
-    section {
-      padding: 80px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-    h2 {
-      font-size: 36px;
-      margin-bottom: 40px;
-      border-left: 4px solid #00ffcc;
-      padding-left: 14px;
-    }
-    .skills, .software, .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-    }
-    .card, .project {
-      background: #1a1a1a;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-      transition: transform 0.4s ease;
-    }
-    .card:hover, .project:hover {
-      transform: translateY(-8px);
-    }
-    .showreel {
-      position: relative;
-      padding-top: 56.25%;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-    }
-    .showreel iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    .play-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
-      background: rgba(0,0,0,0.6);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-    .play-btn:hover {
-      transform: translate(-50%, -50%) scale(1.1);
-      background: rgba(0,255,204,0.9);
-    }
-    .play-btn::before {
-      content: '';
-      width: 0;
-      height: 0;
-      border-left: 20px solid #fff;
-      border-top: 12px solid transparent;
-      border-bottom: 12px solid transparent;
-      margin-left: 5px;
-    }
-    .showreel iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    footer {
-      text-align: center;
-      padding: 50px 20px;
-      background: #111;
-      opacity: 0.8;
-    }
-    a {
-      color: #00ffcc;
-      text-decoration: none;
-    }
-  </style>
+        .hero-bg {
+            background-image: linear-gradient(to bottom, rgba(9, 9, 11, 0.7), rgba(9, 9, 11, 1)), url('https://i.ibb.co/q3kVb5Qm/SVikt-Bfat-So-XLPDa-G2a-Tzb-jpg-1.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            background-color: #d4d4d8; /* Zinc-300 */
+            transition: width 0.3s ease;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover:after { width: 100%; }
+    </style>
 </head>
-<body>
+<body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-zinc-300 selection:text-black">
+    
+    <nav class="bg-zinc-950/80 backdrop-blur-lg border-b border-white/5 fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-4 group cursor-pointer" onclick="window.scrollTo(0,0)">
+                <img src="https://i.ibb.co/wDL3XqV/2222222222222222.png" alt="xSplash Logo" class="w-12 h-12 md:w-14 md:h-14 object-contain group-hover:scale-105 transition-transform duration-300">
+                <div>
+                    <span id="logo-en" class="text-2xl font-bold tracking-tight text-white group-hover:text-gray-300 transition-colors">xSplash</span>
+                    <span id="logo-ar" class="text-2xl font-bold tracking-tight hidden ar-font text-white group-hover:text-gray-300 transition-colors">سبلاش</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-10">
+                <a href="#about" class="nav-link text-zinc-400 hover:text-white font-medium tracking-wide">
+                    <span id="nav-about-en">About</span>
+                    <span id="nav-about-ar" class="hidden ar-font">من أنا</span>
+                </a>
+                <a href="#portfolio" class="nav-link text-zinc-400 hover:text-white font-medium tracking-wide">
+                    <span id="nav-work-en">Work</span>
+                    <span id="nav-work-ar" class="hidden ar-font">أعمالي</span>
+                </a>
+                <a href="#skills" class="nav-link text-zinc-400 hover:text-white font-medium tracking-wide">
+                    <span id="nav-skills-en">Skills</span>
+                    <span id="nav-skills-ar" class="hidden ar-font">المهارات</span>
+                </a>
+                <a href="#contact" class="nav-link text-zinc-400 hover:text-white font-medium tracking-wide">
+                    <span id="nav-contact-en">Contact</span>
+                    <span id="nav-contact-ar" class="hidden ar-font">تواصل</span>
+                </a>
+            </div>
+            
+            <button onclick="toggleLanguage()" class="px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-sm font-semibold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-black/20">
+                <span id="lang-btn-en">AR</span>
+                <span id="lang-btn-ar" class="hidden font-bold">EN</span>
+            </button>
+        </div>
+    </nav>
 
-<header data-aos="fade-down">
-  <h1>Ahmed</h1>
-  <p>Professional Video Editor | YouTube • Shorts • Reels</p>
-  <a class="cta" href="#contact">Hire Me</a>
-</header>
+    <section class="hero-bg min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-zinc-600/20 rounded-full blur-[120px] pointer-events-none"></div>
 
-<section data-aos="fade-up">
-  <h2>About Me</h2>
-  <p>I’m Ahmed, a passionate video editor focused on creating engaging, high-quality visual content. I turn raw footage into dynamic, polished videos optimized for YouTube and social media, with strong pacing and storytelling.</p>
-</section>
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-flex items-center justify-center bg-zinc-900/50 backdrop-blur-md px-6 py-2.5 rounded-full mb-8 text-sm tracking-widest border border-white/10 shadow-2xl">
+                <span class="w-2 h-2 rounded-full bg-zinc-400 mr-3 animate-pulse"></span>
+                <span id="hero-badge-en" class="text-zinc-300 uppercase font-medium">Professional Video Editor</span>
+                <span id="hero-badge-ar" class="hidden ar-font text-zinc-300 font-medium">مونتير فيديو محترف</span>
+            </div>
+            
+            <h1 id="hero-title-en" class="text-6xl md:text-8xl font-bold leading-tight mb-6 text-white tracking-tighter">xSplash<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 to-zinc-500">I turn your ideas into visual stories</span></h1>
+            <h1 id="hero-title-ar" class="text-5xl md:text-7xl font-bold leading-tight mb-6 hidden ar-font text-white">سبلاش<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 to-zinc-500">أحول أفكارك إلى قصص بصرية</span></h1>
+            
+            <p id="hero-subtitle-en" class="max-w-2xl mx-auto text-xl text-zinc-400 mb-12 font-light">More than 5 years of professional video editing experience, crafting high-quality content that captivates.</p>
+            <p id="hero-subtitle-ar" class="max-w-2xl mx-auto text-xl text-zinc-400 mb-12 hidden ar-font font-light">أكثر من 5 سنوات خبرة في مونتاج الفيديو الاحترافي، أصنع محتوى عالي الجودة يلفت الانتباه.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <a href="#portfolio" id="btn-work-en" class="px-10 py-4 bg-zinc-100 text-zinc-950 hover:bg-white hover:scale-105 rounded-2xl font-bold text-lg transition-all shadow-[0_0_40px_rgba(255,255,255,0.15)] flex items-center justify-center gap-3">
+                    View My Work <i class="fa-solid fa-arrow-down text-sm"></i>
+                </a>
+                <a href="#portfolio" id="btn-work-ar" class="px-10 py-4 bg-zinc-100 text-zinc-950 hover:bg-white hover:scale-105 rounded-2xl font-bold text-lg transition-all shadow-[0_0_40px_rgba(255,255,255,0.15)] hidden ar-font flex items-center justify-center gap-3">
+                    شاهد أعمالي <i class="fa-solid fa-arrow-down text-sm"></i>
+                </a>
+                
+                <a href="#contact" id="btn-contact-en" class="px-10 py-4 border border-zinc-700 hover:border-zinc-400 hover:bg-zinc-800 rounded-2xl font-semibold text-lg transition-all text-zinc-300 hover:text-white">Contact Me</a>
+                <a href="#contact" id="btn-contact-ar" class="px-10 py-4 border border-zinc-700 hover:border-zinc-400 hover:bg-zinc-800 rounded-2xl font-semibold text-lg transition-all hidden ar-font text-zinc-300 hover:text-white">تواصل معي</a>
+            </div>
+        </div>
+    </section>
 
-<section data-aos="fade-up">
-  <h2>Some Of My Work</h2>
-  <div class="showreel" id="showreel">
-    <div class="play-btn" onclick="playVideo()"></div>
-    <iframe loading="lazy" id="showreelVideo" src="https://drive.google.com/file/d/18rzIxdcy8uoRCGIhG2bzoz1T4CTpKFAG/preview?mute=1" allow="autoplay" allowfullscreen></iframe>
-  </div>
-</section>
+    <section id="about" class="py-32 bg-zinc-950 relative border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-zinc-800 to-zinc-600 rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
+                    <div class="relative aspect-square max-w-sm mx-auto rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900 flex items-center justify-center p-8 shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
+                        <img src="https://i.ibb.co/TMZ325bQ/logo222.png" alt="xSplash" class="w-full h-full object-contain rounded-2xl drop-shadow-2xl">
+                    </div>
+                </div>
+                <div>
+                    <h2 id="about-title-en" class="text-5xl md:text-6xl font-bold mb-8 text-white tracking-tight">About Me</h2>
+                    <h2 id="about-title-ar" class="text-5xl md:text-6xl font-bold mb-8 hidden ar-font text-white">من أنا</h2>
+                    
+                    <div class="w-20 h-1 bg-zinc-700 rounded-full mb-8"></div>
+                    
+                    <div id="about-text-en" class="text-zinc-400 leading-relaxed text-lg space-y-6 font-light">
+                        <p>I'm xSplash, a professional video editor with more than <strong class="text-zinc-200 font-semibold">5 years of experience</strong> in editing and visual production.</p>
+                        <p>I specialize in producing high-quality videos for brands, YouTubers, and entertainment content. My goal is to transform raw footage into an engaging visual journey.</p>
+                    </div>
+                    <div id="about-text-ar" class="hidden ar-font text-zinc-400 leading-relaxed text-lg space-y-6 font-light">
+                        <p>أنا سبلاش، مونتير فيديو محترف بخبرة تزيد عن <strong class="text-zinc-200 font-semibold">5 سنوات</strong> في مجال المونتاج والإنتاج البصري.</p>
+                        <p>أتخصص في إنتاج فيديوهات احترافية عالية الجودة للعلامات التجارية، اليوتيوبرز، والمحتوى الترفيهي. هدفي هو تحويل اللقطات الخام إلى رحلة بصرية ممتعة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section data-aos="fade-up">
-  <h2>Skills</h2>
-  <div class="skills">
-    <div class="card">Professional Video Editing</div>
-    <div class="card">Transitions & Visual Effects</div>
-    <div class="card">Color Correction & Grading</div>
-    <div class="card">Short-Form Content Editing</div>
-    <div class="card">Text Animations & Motion Graphics</div>
-  </div>
-</section>
+    <section id="skills" class="py-32 bg-[#0a0a0c] relative border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 id="skills-title-en" class="text-5xl font-bold text-white mb-4">Skills & Software</h2>
+                <h2 id="skills-title-ar" class="text-5xl font-bold hidden ar-font text-white mb-4">المهارات والبرامج</h2>
+                <p class="text-zinc-500 max-w-2xl mx-auto">Tools I use to bring ideas to life</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group bg-zinc-900/50 backdrop-blur-sm p-10 rounded-3xl border border-white/5 hover:border-zinc-500/50 hover:-translate-y-2 hover:bg-zinc-900 transition-all duration-300 shadow-xl">
+                    <div class="w-14 h-14 bg-zinc-800 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-laptop-code text-2xl text-zinc-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-6 text-zinc-100">Software</h3>
+                    <ul class="space-y-4 text-zinc-400">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-zinc-600 group-hover:text-zinc-400 transition-colors"></i> Adobe Premiere Pro</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-zinc-600 group-hover:text-zinc-400 transition-colors"></i> CapCut</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-zinc-600 group-hover:text-zinc-400 transition-colors"></i> Adobe After Effects</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-zinc-600 group-hover:text-zinc-400 transition-colors"></i> Adobe Photoshop</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-zinc-600 group-hover:text-zinc-400 transition-colors"></i> DaVinci Resolve</li>
+                    </ul>
+                </div>
+                <div class="group bg-zinc-900/50 backdrop-blur-sm p-10 rounded-3xl border border-white/5 hover:border-zinc-500/50 hover:-translate-y-2 hover:bg-zinc-900 transition-all duration-300 shadow-xl">
+                    <div class="w-14 h-14 bg-zinc-800 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wand-magic-sparkles text-2xl text-zinc-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-6 text-zinc-100">Services</h3>
+                    <ul class="space-y-4 text-zinc-400">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-zinc-600 group-hover:text-zinc-400 transition-colors"></i> Professional Video Editing</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-zinc-600 group-hover:text-zinc-400 transition-colors"></i> Visual Effects & Motion Graphics</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-zinc-600 group-hover:text-zinc-400 transition-colors"></i> Color Grading</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-zinc-600 group-hover:text-zinc-400 transition-colors"></i> Sound Design</li>
+                    </ul>
+                </div>
+                <div class="group bg-zinc-900/50 backdrop-blur-sm p-10 rounded-3xl border border-white/5 hover:border-zinc-500/50 hover:-translate-y-2 hover:bg-zinc-900 transition-all duration-300 shadow-xl flex flex-col items-center justify-center text-center">
+                    <div class="text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-zinc-300 to-zinc-700 drop-shadow-sm group-hover:scale-105 transition-transform duration-500">5+</div>
+                    <div class="text-xl font-medium mt-4 text-zinc-400 tracking-widest uppercase text-sm">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section data-aos="fade-up">
-  <h2>Software</h2>
-  <div class="software">
-    <div class="card">Adobe Premiere Pro</div>
-    <div class="card">After Effects</div>
-    <div class="card">CapCut</div>
-    <div class="card">DaVinci Resolve</div>
-  </div>
-</section>
+    <section id="portfolio" class="py-32 bg-zinc-950 relative border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 id="portfolio-title-en" class="text-5xl font-bold text-white mb-4">My Work</h2>
+                    <h2 id="portfolio-title-ar" class="text-5xl font-bold hidden ar-font text-white mb-4">أعمالي</h2>
+                    <p class="text-zinc-500">A selection of my recent video editing projects</p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div onclick="playVideo('1QEwmiYQNggzLdVtizxJlIfDkPV0YR1hY')" class="group rounded-3xl overflow-hidden cursor-pointer bg-zinc-900 border border-white/5 hover:border-white/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-white/5">
+                    <div class="h-64 bg-black flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" alt="">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/50 group-hover:bg-black/20 transition-all duration-500">
+                            <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:scale-125 group-hover:bg-white group-hover:text-black transition-all duration-500">
+                                <i class="fa-solid fa-play text-2xl text-white group-hover:text-black translate-x-0.5"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-bold text-xl text-zinc-100 mb-2">First Project</h3>
+                        <p class="text-zinc-500 text-sm">Editing + Visual Effects</p>
+                    </div>
+                </div>
 
-<section data-aos="fade-up">
-  <h2>Portfolio</h2>
-  <div class="projects">
-    <div class="project">YouTube Video Editing</div>
-    <div class="project">Reels & Shorts</div>
-    <div class="project">Promo & Ads Videos</div>
-    <div class="project">Gaming Content</div>
-  </div>
-</section>
+                <div onclick="playVideo('18rzIxdcy8uoRCGIhG2bzoz1T4CTpKFAG')" class="group rounded-3xl overflow-hidden cursor-pointer bg-zinc-900 border border-white/5 hover:border-white/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-white/5">
+                    <div class="h-64 bg-black flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" alt="">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/50 group-hover:bg-black/20 transition-all duration-500">
+                            <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:scale-125 group-hover:bg-white group-hover:text-black transition-all duration-500">
+                                <i class="fa-solid fa-play text-2xl text-white group-hover:text-black translate-x-0.5"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-bold text-xl text-zinc-100 mb-2">Second Project</h3>
+                        <p class="text-zinc-500 text-sm">YouTube Long Form</p>
+                    </div>
+                </div>
 
-<section id="contact" data-aos="fade-up">
-  <h2>Contact</h2>
-  <p>Email: ahmedherogamer0@gmail.com</p>
-  <p>Instagram: rexii_yt</p>
-</section>
+                <div onclick="playVideo('1VtPyu0Jz9HFnt5b3d5RJJbf4rlvgPNHc')" class="group rounded-3xl overflow-hidden cursor-pointer bg-zinc-900 border border-white/5 hover:border-white/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-white/5">
+                    <div class="h-64 bg-black flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" alt="">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/50 group-hover:bg-black/20 transition-all duration-500">
+                            <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:scale-125 group-hover:bg-white group-hover:text-black transition-all duration-500">
+                                <i class="fa-solid fa-play text-2xl text-white group-hover:text-black translate-x-0.5"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-bold text-xl text-zinc-100 mb-2">Third Project</h3>
+                        <p class="text-zinc-500 text-sm">Commercial Ad</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<footer>
-  <p>© 2025 Ahmed | Video Editor</p>
-</footer>
+    <div id="videoModal" class="hidden fixed inset-0 bg-black/95 backdrop-blur-sm z-[100] flex items-center justify-center p-4 transition-opacity">
+        <div class="max-w-6xl w-full">
+            <div class="flex justify-end mb-4">
+                <button onclick="closeVideoModal()" class="text-zinc-500 text-5xl hover:text-white transition-colors hover:rotate-90 duration-300">×</button>
+            </div>
+            <div class="aspect-video bg-zinc-950 rounded-2xl overflow-hidden shadow-2xl border border-zinc-800 ring-1 ring-white/10">
+                <iframe id="modalVideo" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({ duration: 1000, once: true });
+    <section id="contact" class="py-32 bg-[#0a0a0c] relative border-t border-zinc-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-gradient-to-b from-zinc-900 to-zinc-950 rounded-[3rem] p-16 text-center border border-white/5 relative overflow-hidden shadow-2xl">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-zinc-800 rounded-full blur-3xl opacity-30"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-zinc-800 rounded-full blur-3xl opacity-30"></div>
+                
+                <div class="relative z-10">
+                    <h2 id="contact-title-en" class="text-5xl font-bold mb-6 text-white">Let's Work Together</h2>
+                    <h2 id="contact-title-ar" class="text-5xl font-bold mb-6 hidden ar-font text-white">لنتعاون معاً</h2>
+                    <p class="text-zinc-400 mb-10 text-lg">Ready to take your videos to the next level?</p>
+                    
+                    <a href="https://www.instagram.com/rexii_yt" target="_blank" class="group inline-flex items-center gap-5 bg-zinc-100 text-black px-12 py-5 rounded-full text-xl font-bold hover:bg-white hover:scale-105 transition-all shadow-xl shadow-white/5">
+                        <i class="fa-brands fa-instagram text-3xl group-hover:rotate-12 transition-transform"></i>
+                        <span>@rexii_yt</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  function playVideo() {
-    const iframe = document.getElementById('showreelVideo');
-    iframe.src = iframe.src + '&autoplay=1';
-    document.querySelector('.play-btn').style.display = 'none';
-  }
-</script>
+    <footer class="bg-zinc-950 py-8 border-t border-white/5 text-center text-zinc-600 text-sm">
+        <p>© 2024 xSplash. All rights reserved.</p>
+    </footer>
 
+    <script>
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            updateAllTranslations();
+        }
+
+        function updateAllTranslations() {
+            const isEn = currentLang === 'en';
+            const elements = [
+                'logo', 'hero-badge', 'hero-title', 'hero-subtitle', 'btn-work', 'btn-contact',
+                'about-title', 'about-text', 'skills-title', 'portfolio-title', 'contact-title', 
+                'lang-btn', 'nav-about', 'nav-work', 'nav-skills', 'nav-contact'
+            ];
+            
+            elements.forEach(base => {
+                const enEl = document.getElementById(base + '-en');
+                const arEl = document.getElementById(base + '-ar');
+                if (enEl) enEl.classList.toggle('hidden', !isEn);
+                if (arEl) arEl.classList.toggle('hidden', isEn);
+            });
+        }
+
+        function playVideo(fileId) {
+            document.getElementById('modalVideo').src = `https://drive.google.com/file/d/${fileId}/preview`;
+            document.getElementById('videoModal').classList.remove('hidden');
+            document.getElementById('videoModal').classList.add('flex');
+            // Prevent body scrolling when modal is open
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            document.getElementById('modalVideo').src = '';
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            // Restore body scrolling
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onload = () => updateAllTranslations();
+    </script>
 </body>
 </html>
